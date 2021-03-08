@@ -20,6 +20,9 @@ public class LoginController {
     // 对 html 标签进行转义，防止 XSS 攻击
         String username = requestUser.getUsername();
         User user = userService.get(username, requestUser.getPassword());
+        System.out.println(username);
+        System.out.println(requestUser.getPassword());
+        System.out.println(user);
         if (null==user) {
             String message = "账号密码错误";
             System.out.println("test");
