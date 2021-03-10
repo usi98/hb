@@ -1,4 +1,4 @@
-#
+
 ##服务端口
 #server:
 #  port: 8055
@@ -8,7 +8,7 @@ spring:
     #    driver-class-name: com.mysql.cj.jdbc.Driver
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
     #    url: jdbc:mysql://localhost:3306/testdemo?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&zeroDateTimeBehavior=convertToNull
-    url: jdbc:log4jdbc:mysql://localhost:3306/hb?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&zeroDateTimeBehavior=convertToNull
+    url: jdbc:log4jdbc:mysql://localhost:3306/testdemo?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&zeroDateTimeBehavior=convertToNull
     hikari: # springboot 2.0 整合了hikari ,据说这是目前性能最好的java数据库连接池
       username: root
       password: root
