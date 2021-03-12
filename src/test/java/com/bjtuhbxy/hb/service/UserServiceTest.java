@@ -29,4 +29,10 @@ public class UserServiceTest {
         userService.add(user);
         System.out.println(user);
     }
+    @Test
+    public void findByUsername(){
+        String username = "admin1";
+        User user = userService.findByUsername(username);
+        System.out.println(user);
+    }
 }

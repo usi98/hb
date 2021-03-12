@@ -2,7 +2,6 @@ package com.bjtuhbxy.hb.dao;
 
 import com.bjtuhbxy.hb.pojo.Book;
 import com.bjtuhbxy.hb.pojo.Category;
-import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
