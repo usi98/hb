@@ -11,4 +11,5 @@ public interface StudentDAO extends JpaRepository<Student, Integer> {
     //通过楼号和房间号 查询唯一 宿舍
     Student findByBuildingIdAndAndRoomId(int bid , int rid);
     List<Student> findStudentsByBuildingIdAndAndRoomId(int bid, int rid);
+
 }
