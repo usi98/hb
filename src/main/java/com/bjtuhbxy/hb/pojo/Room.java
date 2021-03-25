@@ -1,13 +1,9 @@
 package com.bjtuhbxy.hb.pojo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-import org.springframework.data.jpa.repository.Modifying;
 
 import javax.persistence.*;
+import java.sql.Time;
 import java.util.List;
 
 @Entity
@@ -27,9 +23,12 @@ public class Room {
     int buildingId;
     int roomId;
     int surplus;
+    int price;
+    Time stime;
+    Time etime;
 
     @Transient
-    List<Student> students;
+    List<User> users;
 
     public int getId() {
         return id;
@@ -63,22 +62,35 @@ public class Room {
         this.surplus = surplus;
     }
 
-    public List<Student> getStudents() {
-        return students;
+    public int getPrice() {
+        return price;
     }
 
-    public void setStudents(List<Student> students) {
-        this.students = students;
+    public void setPrice(int price) {
+        this.price = price;
     }
 
-    @Override
-    public String toString() {
-        return "Room{" +
-                "id=" + id +
-                ", buildingId=" + buildingId +
-                ", roomId=" + roomId +
-                ", surplus=" + surplus +
-                ", students=" + students +
-                '}';
+    public Time getStime() {
+        return stime;
+    }
+
+    public void setStime(Time stime) {
+        this.stime = stime;
+    }
+
+    public Time getEtime() {
+        return etime;
+    }
+
+    public void setEtime(Time etime) {
+        this.etime = etime;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 }

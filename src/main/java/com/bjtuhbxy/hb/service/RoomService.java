@@ -16,9 +16,12 @@ public class RoomService {
     @Autowired
     StudentService studentService;
 
+    @Autowired
+    UserService userService;
+
     public Room getRoomAndStudentsInfo(int bid, int rid){
         Room room = roomDAO.findByBuildingIdAndAndRoomId(bid,rid);
-        room.setStudents(studentService.getStudents(bid,rid));
+        room.setUsers(userService.getListByBidAndRid(bid,rid));
         return room;
     }
 
