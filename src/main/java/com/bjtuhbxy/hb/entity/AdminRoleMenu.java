@@ -1,4 +1,4 @@
-package com.bjtuhbxy.hb.pojo;
+package com.bjtuhbxy.hb.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;

@@ -1,7 +1,7 @@
 package com.bjtuhbxy.hb.service;
 
 import com.bjtuhbxy.hb.dao.AdminUserRoleDAO;
-import com.bjtuhbxy.hb.pojo.AdminUserRole;
+import com.bjtuhbxy.hb.entity.AdminUserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,6 @@
 package com.bjtuhbxy.hb.dao;
 
-import com.bjtuhbxy.hb.pojo.Room;
-import com.bjtuhbxy.hb.pojo.Student;
+import com.bjtuhbxy.hb.entity.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

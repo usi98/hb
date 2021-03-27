@@ -1,8 +1,7 @@
 package com.bjtuhbxy.hb.dao;
 
 import com.bjtuhbxy.hb.HbApplication;
-import com.bjtuhbxy.hb.pojo.Student;
-import com.bjtuhbxy.hb.pojo.User;
+import com.bjtuhbxy.hb.entity.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

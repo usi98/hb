@@ -2,7 +2,7 @@ package com.bjtuhbxy.hb.dao;
 
 import com.bjtuhbxy.hb.HbApplication;
 
-import com.bjtuhbxy.hb.pojo.Room;
+import com.bjtuhbxy.hb.entity.Room;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

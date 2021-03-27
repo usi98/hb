@@ -1,7 +1,6 @@
-package com.bjtuhbxy.hb.service;
+package com.bjtuhbxy.hb;
 
-import com.bjtuhbxy.hb.HbApplication;
-import com.bjtuhbxy.hb.entity.Room;
+import com.bjtuhbxy.hb.redis.RedisService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,12 +9,21 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = HbApplication.class)
-public class StudentServiceTest {
+public class RedisTest {
+
     @Autowired
-    StudentService studentService;
+    RedisService redisService;
     @Test
-    public void StudentServiceTest(){
-        Room room = studentService.getRoom(4,305);
-        System.out.println(room);
+    public void redisAddTest(){
+        redisService.set("a:a1","zifuchuan");
+
+
+
+    }
+    public void redisGetTest(){
+        redisService.get("a:a1");
+
+
+
     }
 }

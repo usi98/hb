@@ -2,8 +2,8 @@ package com.bjtuhbxy.hb.service;
 
 import com.bjtuhbxy.hb.dao.RoomDAO;
 import com.bjtuhbxy.hb.dao.StudentDAO;
-import com.bjtuhbxy.hb.pojo.Room;
-import com.bjtuhbxy.hb.pojo.Student;
+import com.bjtuhbxy.hb.entity.Room;
+import com.bjtuhbxy.hb.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

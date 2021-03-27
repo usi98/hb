@@ -1,6 +1,6 @@
 package com.bjtuhbxy.hb.dao;
 
-import com.bjtuhbxy.hb.pojo.User;
+import com.bjtuhbxy.hb.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

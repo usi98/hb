@@ -2,7 +2,7 @@ package com.bjtuhbxy.hb.service;
 
 import com.alibaba.fastjson.JSON;
 import com.bjtuhbxy.hb.HbApplication;
-import com.bjtuhbxy.hb.pojo.Room;
+import com.bjtuhbxy.hb.entity.Room;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

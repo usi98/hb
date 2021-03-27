@@ -1,6 +1,6 @@
 package com.bjtuhbxy.hb.controller;
 
-import com.bjtuhbxy.hb.pojo.User;
+import com.bjtuhbxy.hb.entity.User;
 import com.bjtuhbxy.hb.result.Result;
 import com.bjtuhbxy.hb.result.ResultFactory;
 import com.bjtuhbxy.hb.service.UserService;

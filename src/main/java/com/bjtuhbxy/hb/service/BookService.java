@@ -1,8 +1,8 @@
 package com.bjtuhbxy.hb.service;
 
 import com.bjtuhbxy.hb.dao.BookDAO;
-import com.bjtuhbxy.hb.pojo.Book;
-import com.bjtuhbxy.hb.pojo.Category;
+import com.bjtuhbxy.hb.entity.Book;
+import com.bjtuhbxy.hb.entity.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;

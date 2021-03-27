@@ -1,7 +1,7 @@
 package com.bjtuhbxy.hb.controller;
 
 
-import com.bjtuhbxy.hb.pojo.Book;
+import com.bjtuhbxy.hb.entity.Book;
 import com.bjtuhbxy.hb.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

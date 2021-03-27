@@ -1,7 +1,7 @@
 package com.bjtuhbxy.hb.service;
 
 import com.bjtuhbxy.hb.dao.AdminRoleMenuDAO;
-import com.bjtuhbxy.hb.pojo.AdminRoleMenu;
+import com.bjtuhbxy.hb.entity.AdminRoleMenu;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,7 @@
 package com.bjtuhbxy.hb.dao;
 
-import com.bjtuhbxy.hb.pojo.Book;
-import com.bjtuhbxy.hb.pojo.Category;
+import com.bjtuhbxy.hb.entity.Book;
+import com.bjtuhbxy.hb.entity.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

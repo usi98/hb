@@ -1,6 +1,6 @@
 package com.bjtuhbxy.hb.realm;
 
-import com.bjtuhbxy.hb.pojo.User;
+import com.bjtuhbxy.hb.entity.User;
 import com.bjtuhbxy.hb.service.UserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;

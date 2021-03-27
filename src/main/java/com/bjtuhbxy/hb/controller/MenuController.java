@@ -1,9 +1,8 @@
 package com.bjtuhbxy.hb.controller;
 
-import com.bjtuhbxy.hb.pojo.AdminMenu;
+import com.bjtuhbxy.hb.entity.AdminMenu;
 import com.bjtuhbxy.hb.service.AdminMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

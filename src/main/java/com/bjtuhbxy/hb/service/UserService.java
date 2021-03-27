@@ -1,7 +1,7 @@
 package com.bjtuhbxy.hb.service;
 
 import com.bjtuhbxy.hb.dao.UserDAO;
-import com.bjtuhbxy.hb.pojo.User;
+import com.bjtuhbxy.hb.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,7 @@
 package com.bjtuhbxy.hb.dao;
 
 import com.bjtuhbxy.hb.HbApplication;
-import com.bjtuhbxy.hb.pojo.AdminUserRole;
+import com.bjtuhbxy.hb.entity.AdminUserRole;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

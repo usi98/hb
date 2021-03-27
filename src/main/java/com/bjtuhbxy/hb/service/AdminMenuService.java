@@ -1,10 +1,10 @@
 package com.bjtuhbxy.hb.service;
 
 import com.bjtuhbxy.hb.dao.AdminMenuDAO;
-import com.bjtuhbxy.hb.pojo.AdminMenu;
-import com.bjtuhbxy.hb.pojo.AdminRoleMenu;
-import com.bjtuhbxy.hb.pojo.AdminUserRole;
-import com.bjtuhbxy.hb.pojo.User;
+import com.bjtuhbxy.hb.entity.AdminMenu;
+import com.bjtuhbxy.hb.entity.AdminRoleMenu;
+import com.bjtuhbxy.hb.entity.AdminUserRole;
+import com.bjtuhbxy.hb.entity.User;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

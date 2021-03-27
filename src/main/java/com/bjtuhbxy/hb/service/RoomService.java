@@ -1,12 +1,9 @@
 package com.bjtuhbxy.hb.service;
 
 import com.bjtuhbxy.hb.dao.RoomDAO;
-import com.bjtuhbxy.hb.pojo.Room;
-import com.bjtuhbxy.hb.pojo.Student;
+import com.bjtuhbxy.hb.entity.Room;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class RoomService {
