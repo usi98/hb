@@ -24,4 +24,9 @@ public class roomServiceTest {
         System.out.println("ss");
         System.out.println(json);
     }
+
+    @Test
+    public void updatePowerTest(){
+        roomService.updatePower(450,1,101);
+    }
 }

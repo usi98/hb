@@ -20,6 +20,18 @@ public class roomDaoTest {
     RoomDAO roomDAO;
 
     @Test
+    public void updatePowerTest(){
+        int i =roomDAO.updatePowerPaxAll(80);
+        System.out.println(i);
+    }
+
+    @Test
+    public void updatePowerTest2(){
+        int i =roomDAO.updatePowerPaxByBidAndRid(810,1,101);
+        System.out.println(i);
+    }
+
+    @Test
     public void timeTest(){
         System.out.println(new Time(6,0,0));
     }

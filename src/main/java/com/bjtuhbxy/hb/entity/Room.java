@@ -1,11 +1,14 @@
 package com.bjtuhbxy.hb.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.sql.Time;
 import java.util.List;
 
+//getter setter equals hashcode toString
+@Data
 @Entity
 @Table(name = "room")
 @JsonIgnoreProperties({ "handler","hibernateLazyInitializer" })
@@ -26,71 +29,25 @@ public class Room {
     int price;
     Time stime;
     Time etime;
+    int powerMax;
 
     @Transient
     List<User> users;
 
-    public int getId() {
-        return id;
+    @Override
+    public String toString() {
+        return "Room{" +
+                "id=" + id +
+                ", buildingId=" + buildingId +
+                ", roomId=" + roomId +
+                ", surplus=" + surplus +
+                ", price=" + price +
+                ", stime=" + stime +
+                ", etime=" + etime +
+                ", powerMax=" + powerMax +
+                ", users=" + users +
+                '}';
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
-    public int getBuildingId() {
-        return buildingId;
-    }
-
-    public void setBuildingId(int buildingId) {
-        this.buildingId = buildingId;
-    }
-
-    public int getRoomId() {
-        return roomId;
-    }
-
-    public void setRoomId(int roomId) {
-        this.roomId = roomId;
-    }
-
-    public int getSurplus() {
-        return surplus;
-    }
-
-    public void setSurplus(int surplus) {
-        this.surplus = surplus;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public Time getStime() {
-        return stime;
-    }
-
-    public void setStime(Time stime) {
-        this.stime = stime;
-    }
-
-    public Time getEtime() {
-        return etime;
-    }
-
-    public void setEtime(Time etime) {
-        this.etime = etime;
-    }
-
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
 }

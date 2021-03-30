@@ -47,8 +47,8 @@ public class NoticeController {
 
 
         MyPage myPage = articleService.list(page - 1, size);
-        logger.info("myPageJSON:{}", JSON.toJSONString(myPage));
-        logger.info("RESULTJSON:{}", ResultFactory.buildSuccessResult(myPage).getResult());
+//        logger.info("myPageJSON:{}", JSON.toJSONString(myPage));
+//        logger.info("RESULTJSON:{}", ResultFactory.buildSuccessResult(myPage).getResult());
 
         return ResultFactory.buildSuccessResult(myPage);
     }
