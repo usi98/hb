@@ -4,6 +4,7 @@ import com.bjtuhbxy.hb.entity.User;
 import com.bjtuhbxy.hb.result.Result;
 import com.bjtuhbxy.hb.result.ResultFactory;
 import com.bjtuhbxy.hb.service.UserService;
+import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -61,8 +62,14 @@ public class LoginController {
     @ResponseBody
     @GetMapping(value = "api/authentication")
     public String authentication(){
-        //登录认证校验
-        return "身份认证成功";
+
+//        String username = SecurityUtils.getSubject().getPrincipal().toString();
+        if(StringUtils.isNotEmpty("username")){
+            //登录认证校验
+            return "身份认证成功";
+        }
+        return "身份认证失败";
+
     }
 
 }

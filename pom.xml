@@ -135,6 +135,12 @@
             <artifactId>lombok</artifactId>
             <version>1.18.4</version>
         </dependency>
+<!--        &lt;!&ndash;定时任务quartz&ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-quartz</artifactId>-->
+<!--        </dependency>-->
+
 
         <dependency>
             <groupId>javax.validation</groupId>

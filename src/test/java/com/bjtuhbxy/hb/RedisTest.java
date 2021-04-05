@@ -16,9 +16,6 @@ public class RedisTest {
     @Test
     public void redisAddTest(){
         redisService.set("a:a1","zifuchuan");
-
-
-
     }
     public void redisGetTest(){
         redisService.get("a:a1");
