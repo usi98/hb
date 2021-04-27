@@ -30,11 +30,9 @@ public class NoticeController {
     @PostMapping("api/admin/content/article")
     public void saveArticle(@RequestBody @Validated Article article) {
         logger.info("文章：{}",article);
-
+        //日期格式化输出
         Date date = new Date(System.currentTimeMillis());
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-
 
         article.setDate(sdf.format(date));
         logger.info("time:{}",date);

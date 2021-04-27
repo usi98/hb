@@ -38,6 +38,7 @@ public class LoginController {
         System.out.println("密码:"+requestUser.getPassword());
         // todo 是否记住我
         //usernamePasswordToken.setRememberMe(true);
+        usernamePasswordToken.setRememberMe(false);
 
             try {
                 subject.login(usernamePasswordToken);

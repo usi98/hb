@@ -17,13 +17,19 @@ public class UserService {
         return null!=user;
     }
 
+    public User getById(Integer Id) {
+        return userDAO.getOne(Id);
+    }
+
     public User getByName(String username) {
         return userDAO.findByUsername(username);
     }
     public User getByUserName(String username) {
         return userDAO.findByUsername(username);
     }
-
+    public User findByUsername(String username) {
+        return userDAO.findByUsername(username);
+    }
     //通过楼号和房间号查询所有学生
     public List<User> getListByBidAndRid(int bid, int rid) {
         return userDAO.findUsersByBuildingIdAndRoomId(bid, rid);
@@ -38,7 +44,9 @@ public class UserService {
         userDAO.save(user);
     }
 
-    public User findByUsername(String username) {
-        return userDAO.findByUsername(username);
+    public void save(User user) {
+        userDAO.save(user);
     }
+
+
 }

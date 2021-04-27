@@ -23,7 +23,6 @@ public class RegisterController {
     @PostMapping("api/register")
     @ResponseBody
     public Result register(@RequestBody User user) {
-        System.out.println("进入注册");
         String username = user.getUsername();
         String password = user.getPassword();
         username = HtmlUtils.htmlEscape(username);

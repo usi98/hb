@@ -11,6 +11,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+
 @Service
 public class RoomService {
     Logger logger = LoggerFactory.getLogger(RoomService.class);
@@ -19,10 +21,14 @@ public class RoomService {
     RoomDAO roomDAO;
 
     @Autowired
-    StudentService studentService;
-
-    @Autowired
     UserService userService;
+
+    public Room save(Room room){
+        if (room != null){
+            return roomDAO.save(room);
+        }
+        return null;
+    }
 
     public Room getRoomAndStudentsInfo(int bid, int rid){
         Room room = roomDAO.findByBuildingIdAndAndRoomId(bid,rid);
@@ -51,6 +57,19 @@ public class RoomService {
         MyPage<Room> rooms;
         Sort sort = Sort.by(Sort.Direction.ASC, "id");
         Page<Room> roomsInDb = roomDAO.findAll(PageRequest.of(page, size, sort));
+        rooms = new MyPage<>(roomsInDb);
+        return rooms;
+    }
+
+    public MyPage listWithSInfo(int page, int size){
+        MyPage<Room> rooms;
+        Sort sort = Sort.by(Sort.Direction.ASC, "id");
+        Page<Room> roomsInDb = roomDAO.findAll(PageRequest.of(page, size, sort));
+
+        roomsInDb.getContent();
+        for (Room r: roomsInDb.getContent()) {
+            r.setUsers(userService.getListByBidAndRid(r.getBuildingId(),r.getRoomId()));
+        }
         rooms = new MyPage<>(roomsInDb);
         return rooms;
     }

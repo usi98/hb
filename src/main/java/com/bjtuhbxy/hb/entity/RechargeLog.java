@@ -4,31 +4,25 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
+import java.sql.Time;
 
-@Entity
-@Table(name = "user")
-@JsonIgnoreProperties({"handler","hibernateLazyInitializer"})
-
+//getter setter equals hashcode toString
 @Data
-public class User {
+@Entity
+@Table(name = "recharge_log")
+@JsonIgnoreProperties({ "handler","hibernateLazyInitializer" })
+public class RechargeLog {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     int id;
-
     String username;
-    String password;
-    String salt;
     String name;
-    String phone;
-    String email;
-    Integer enabled;
-    Integer buildingId;
-    Integer roomId;
-    String sex;
+    int buildingId;
+    int roomId;
+    BigDecimal money;
+    String description;
     String date;
-    String major;
-    String classes;
-
 }
-

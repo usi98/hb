@@ -2,11 +2,8 @@ package com.bjtuhbxy.hb.controller.admin.parameter;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.bjtuhbxy.hb.controller.admin.NoticeController;
-import com.bjtuhbxy.hb.entity.Room;
 import com.bjtuhbxy.hb.result.Result;
 import com.bjtuhbxy.hb.result.ResultFactory;
-import com.bjtuhbxy.hb.service.ArticleService;
 import com.bjtuhbxy.hb.service.RoomService;
 import com.bjtuhbxy.hb.util.MyPage;
 import org.slf4j.Logger;
