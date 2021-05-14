@@ -32,6 +32,9 @@ public class Room {
     Time etime;
     int powerMax;
     BigDecimal balance;
+    String meterAddress;
+    String meterInfo;
+    int enable;
 
     @Transient
     List<User> users;

@@ -1,11 +1,20 @@
 package com.bjtuhbxy.hb.schedule;
 
+import com.bjtuhbxy.hb.entity.Params;
+import com.bjtuhbxy.hb.entity.Room;
 import com.bjtuhbxy.hb.redis.RedisService;
+import com.bjtuhbxy.hb.serial.CommUtil;
+import com.bjtuhbxy.hb.serial.Operation;
+import com.bjtuhbxy.hb.service.ParamsService;
+import com.bjtuhbxy.hb.service.RoomService;
+import org.apache.shiro.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Component
 public class Job {
@@ -13,21 +22,71 @@ public class Job {
     @Autowired
     RedisService redisService;
 
+    @Autowired
+    RoomService roomService;
 
-    //每隔五秒
-//    @Scheduled(cron = "0/2 * * * * ? ")
-    public void process() {
+    @Autowired
+    ParamsService paramsService;
 
-        System.out.println("向你发脏数据！" + new Date());
-        for (int i = 0; i < 3; i++) {
-            System.out.println("async" + i);
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+    @Autowired
+    CommUtil commUtil;
+
+//    @Scheduled(cron = "0 0 0/1 * * ?")
+//    public void updateInfo(){
+//        this.list = roomService.findAll();
+//    }
+
+    //每隔10分钟
+    @Scheduled(cron = "0 0/10 * * * ? ")
+    public void powerstart(){
+        Params paramst = paramsService.getparamByName("starttime");
+        Params paramet = paramsService.getparamByName("endtime");
+
+        Date date = new Date(System.currentTimeMillis());
+        SimpleDateFormat sdf = new SimpleDateFormat("HHmm");
+
+        String sHH = paramst.getValue1();
+        String smm =  paramet.getValue1();
+        String eHH = paramst.getValue1();
+        String emm =  paramet.getValue1();
+        List<Room> list;
+        if(sdf.format(date).substring(0,2).equals(sHH) && sdf.format(date).substring(2,4).equals(smm)){
+            list = roomService.getRoomsByEnable(0);
+            for (Room room:list) {
+                if (room.getEnable()==0){
+                    String line = Operation.trip(room.getMeterAddress(), "000000","02","C1C2C3C4", "1B");
+                    String r = commUtil.send(line);
+                    if("FEFEFEFE".equals(StringUtils.clean(r).substring(0,8))){
+                        r = r.substring(8);
+                        String A5_0 = r.substring(2,14);
+                        String C = r.substring(16,18);
+                        if(room.getMeterAddress().equals(A5_0) && "9C".equals(C)) {
+                            room.setEnable(1);
+                            roomService.save(room);
+                        }
+                    }
+                }
+            }
+        }else if(sdf.format(date).substring(0,2).equals(eHH) && sdf.format(date).substring(2,4).equals(emm)) {
+            list = roomService.getRoomsByEnable(1);
+            for (Room room : list) {
+                if (room.getEnable() == 1) {
+                    String line = Operation.trip(room.getMeterAddress(), "000000","02","C1C2C3C4", "1A");
+                    String r = commUtil.send(line);
+                    if ("FEFEFEFE".equals(StringUtils.clean(r).substring(0, 8))) {
+                        r = r.substring(8);
+                        String A5_0 = r.substring(2, 14);
+                        String C = r.substring(16, 18);
+                        if (room.getMeterAddress().equals(A5_0) && "9C".equals(C)) {
+                            room.setEnable(0);
+                            roomService.save(room);
+                        }
+                    }
+                }
             }
         }
     }
+
     //每隔1秒
     @Scheduled(cron = "0/1 * * * * ? ")
     public void updatePower1(){

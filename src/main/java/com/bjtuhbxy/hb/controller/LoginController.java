@@ -1,8 +1,10 @@
 package com.bjtuhbxy.hb.controller;
 
+import com.bjtuhbxy.hb.entity.OperateLog;
 import com.bjtuhbxy.hb.entity.User;
 import com.bjtuhbxy.hb.result.Result;
 import com.bjtuhbxy.hb.result.ResultFactory;
+import com.bjtuhbxy.hb.service.OperateLogService;
 import com.bjtuhbxy.hb.service.UserService;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
@@ -15,12 +17,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 @Controller
 public class LoginController {
+
+    Logger logger = LoggerFactory.getLogger(LoginController.class);
+
     @Autowired
     UserService userService;
 
-    Logger logger = LoggerFactory.getLogger(LoginController.class);
+    @Autowired
+    OperateLogService operateLogService;
 
     @CrossOrigin
     @PostMapping(value = "api/login")
@@ -32,16 +41,24 @@ public class LoginController {
 
         UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(username, requestUser.getPassword());
         //todo 输出用户名和密码 1暂时写在这里以便调试程序
-        logger.debug("登录");
-
+        logger.info("登录");
         System.out.println("用户名:"+username);
         System.out.println("密码:"+requestUser.getPassword());
+
         // todo 是否记住我
         //usernamePasswordToken.setRememberMe(true);
         usernamePasswordToken.setRememberMe(false);
 
             try {
                 subject.login(usernamePasswordToken);
+                OperateLog operateLog = new OperateLog();
+                operateLog.setUsername(username);
+                operateLog.setDescription("登录成功");
+                Date date = new Date(System.currentTimeMillis());
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                operateLog.setDate(sdf.format(date));
+                operateLogService.save(operateLog);
+
                 return ResultFactory.buildSuccessResult(username);
             } catch (AuthenticationException e) {
                 return ResultFactory.buildFailResult("登录失败");

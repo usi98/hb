@@ -1,4 +1,4 @@
-package com.bjtuhbxy.hb.controller.admin.parameter;
+package com.bjtuhbxy.hb.controller.admin;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -12,8 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
-
 @ResponseBody
 @Controller
 public class PowerController {
@@ -25,20 +23,16 @@ public class PowerController {
     @CrossOrigin
     @PostMapping(value = "api/updatePowerAll")
     public Result updatePowerAll(@RequestBody String reqJson){
-
         JSONObject json=JSON.parseObject(reqJson);
         int power = json.getIntValue("power");
         logger.info("更新："+"api/updatePowerAll");
         Integer num =  roomService.updatePowerMaxAll(power);
         return ResultFactory.buildSuccessResult(num);
-
     }
-
 
     @CrossOrigin
     @PostMapping(value = "api/updatePower")
     public Result updatePower(@RequestBody String reqJson){
-
         JSONObject json=JSON.parseObject(reqJson);
         int power = json.getIntValue("power");
         int bid = json.getIntValue("buildId");
@@ -46,13 +40,11 @@ public class PowerController {
         logger.info("更新："+"api/updatePower");
         Integer num =  roomService.updatePower(power,bid,rid);
         return ResultFactory.buildSuccessResult(num);
-
     }
 
     @CrossOrigin
     @GetMapping("/api/powerInfo/{size}/{page}")
     public Result listRooms(@PathVariable("size") int size, @PathVariable("page") int page) {
-
 
         MyPage myPage = roomService.list(page - 1, size);
 //        logger.info("Rooms myPageJSON:{}", JSON.toJSONString(myPage));

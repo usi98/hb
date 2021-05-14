@@ -3,13 +3,13 @@ package com.bjtuhbxy.hb.controller.user;
 import cn.hutool.json.JSONString;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.bjtuhbxy.hb.dao.RoomDAO;
-import com.bjtuhbxy.hb.dao.UserDAO;
 import com.bjtuhbxy.hb.entity.RechargeLog;
 import com.bjtuhbxy.hb.entity.Room;
 import com.bjtuhbxy.hb.entity.User;
 import com.bjtuhbxy.hb.result.Result;
 import com.bjtuhbxy.hb.result.ResultFactory;
+import com.bjtuhbxy.hb.serial.CommUtil;
+import com.bjtuhbxy.hb.serial.Operation;
 import com.bjtuhbxy.hb.service.RechargeLogService;
 import com.bjtuhbxy.hb.service.RoomService;
 import com.bjtuhbxy.hb.service.UserService;
@@ -30,6 +30,9 @@ import java.util.List;
 public class UserController {
 
     Logger logger = LoggerFactory.getLogger(UserController.class);
+
+    @Autowired
+    CommUtil commUtil;
 
     @Autowired
     UserService userService;
@@ -109,7 +112,7 @@ public class UserController {
         Date date = new Date(System.currentTimeMillis());
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         log.setDate(sdf.format(date));
-        //保存日志
+        //保存日志 到数据库
         rechargeLogService.save(log);
 
         return ResultFactory.buildSuccessResult(money);
@@ -123,5 +126,17 @@ public class UserController {
         MyPage myPage = rechargeLogService.list(page-1, size);
         System.out.println(myPage.getContent());
         return ResultFactory.buildSuccessResult(myPage);
+    }
+
+
+    @CrossOrigin
+    @GetMapping("api/user/com/{s}")
+    @ResponseBody
+    public Result com(@PathVariable("s") String s) {
+//        String a = commUtil.send("FEFEFEFE6800000000111168110433333433D416");
+
+        String read = Operation.read("000000000001","00900200");
+        String a = commUtil.send("FEFEFEFE"+read);
+        return ResultFactory.buildSuccessResult(a);
     }
 }
