@@ -2,6 +2,7 @@ package com.bjtuhbxy.hb.controller.admin;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.bjtuhbxy.hb.entity.Room;
 import com.bjtuhbxy.hb.result.Result;
 import com.bjtuhbxy.hb.result.ResultFactory;
 import com.bjtuhbxy.hb.service.RoomService;
@@ -11,6 +12,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @ResponseBody
 @Controller
@@ -53,5 +56,28 @@ public class PowerController {
         return ResultFactory.buildSuccessResult(myPage);
     }
 
+    @CrossOrigin
+    @PostMapping(value = "api/updateRoomTime")
+    public Result updateRoomTime(@RequestBody String reqJson){
+        JSONObject json=JSON.parseObject(reqJson);
+        int bid = json.getIntValue("buildingId");
+        int rid = json.getIntValue("roomId");
+        String stime = json.getString("stime");
+        String etime = json.getString("etime");
+        if (bid == 0&& rid==0){
+            List<Room> roomList = roomService.findAll();
+            for(Room room: roomList){
+                room.setStime(stime);
+                room.setEtime(etime);
+                roomService.save(room);
+            }
+        }else{
+            Room room = roomService.getRoomInfo(bid, rid);
+            room.setStime(stime);
+            room.setEtime(etime);
+            roomService.save(room);
+        }
+        return ResultFactory.buildSuccessResult(200);
+    }
 
 }

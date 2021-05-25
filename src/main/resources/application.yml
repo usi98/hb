@@ -6,3 +6,18 @@ spring:
       exclude: WEB-INF/**
   freemarker:
     cache: false    #页面不加载缓存，修改即时生效
+  mail:
+    default-encoding: utf-8
+    # 主机地址
+    host: smtp.163.com
+    # 邮箱名
+    username: k74qrlin@163.com
+    # 授权码（不是密码）
+    password: QUMTMGKAQJVFRJHI
+    #加下面这两个配置才能通过qq给qq及其他邮箱(如163等)发邮件
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true

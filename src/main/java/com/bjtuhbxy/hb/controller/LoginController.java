@@ -40,17 +40,18 @@ public class LoginController {
         Subject subject = SecurityUtils.getSubject();
 
         UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(username, requestUser.getPassword());
-        //todo 输出用户名和密码 1暂时写在这里以便调试程序
+        //输出用户名和密码 1暂时写在这里以便调试程序
         logger.info("登录");
         System.out.println("用户名:"+username);
         System.out.println("密码:"+requestUser.getPassword());
 
-        // todo 是否记住我
+        //是否记住我
         //usernamePasswordToken.setRememberMe(true);
         usernamePasswordToken.setRememberMe(false);
 
             try {
                 subject.login(usernamePasswordToken);
+
                 OperateLog operateLog = new OperateLog();
                 operateLog.setUsername(username);
                 operateLog.setDescription("登录成功");

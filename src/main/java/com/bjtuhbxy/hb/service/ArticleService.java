@@ -17,9 +17,8 @@ public class ArticleService {
     ArticleDAO articleDAO;
 
     public MyPage list(int page, int size){
-
         MyPage<Article> articles;
-        Sort sort = Sort.by(Sort.Direction.DESC, "id");
+        Sort sort = Sort.by(Sort.Direction.DESC, "date");
         Page<Article> articlesInDb = articleDAO.findAll(PageRequest.of(page, size, sort));
         articles = new MyPage<>(articlesInDb);
 

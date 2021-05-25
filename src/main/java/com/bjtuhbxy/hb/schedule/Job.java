@@ -87,6 +87,58 @@ public class Job {
         }
     }
 
+    //每隔10分钟
+    @Scheduled(cron = "0 0/15 * * * ? ")
+    public void powercontrol(){
+        Params paramst = paramsService.getparamByName("starttime");
+        Params paramet = paramsService.getparamByName("endtime");
+
+        Date date = new Date(System.currentTimeMillis());
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+
+        String sHH = paramst.getValue1();
+        String smm =  paramet.getValue1();
+        String eHH = paramst.getValue1();
+        String emm =  paramet.getValue1();
+        List<Room> list;
+        if(sdf.format(date).substring(0,2).equals(sHH) && sdf.format(date).substring(2,4).equals(smm)){
+            list = roomService.getRoomsByEnable(0);
+            for (Room room:list) {
+                if (room.getEnable()==0){
+                    String line = Operation.trip(room.getMeterAddress(), "000000","02","C1C2C3C4", "1B");
+                    String r = commUtil.send(line);
+                    if("FEFEFEFE".equals(StringUtils.clean(r).substring(0,8))){
+                        r = r.substring(8);
+                        String A5_0 = r.substring(2,14);
+                        String C = r.substring(16,18);
+                        if(room.getMeterAddress().equals(A5_0) && "9C".equals(C)) {
+                            room.setEnable(1);
+                            roomService.save(room);
+                        }
+                    }
+                }
+            }
+        }else if(sdf.format(date).substring(0,2).equals(eHH) && sdf.format(date).substring(2,4).equals(emm)) {
+            list = roomService.getRoomsByEnable(1);
+            for (Room room : list) {
+                if (room.getEnable() == 1) {
+                    String line = Operation.trip(room.getMeterAddress(), "000000","02","C1C2C3C4", "1A");
+                    String r = commUtil.send(line);
+                    if ("FEFEFEFE".equals(StringUtils.clean(r).substring(0, 8))) {
+                        r = r.substring(8);
+                        String A5_0 = r.substring(2, 14);
+                        String C = r.substring(16, 18);
+                        if (room.getMeterAddress().equals(A5_0) && "9C".equals(C)) {
+                            room.setEnable(0);
+                            roomService.save(room);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+/*
     //每隔1秒
     @Scheduled(cron = "0/1 * * * * ? ")
     public void updatePower1(){
@@ -150,5 +202,5 @@ public class Job {
         int min = 180;
         int d = (int)(Math.random()*(max - min)+min);
         redisService.set("power:power_8-101",d);
-    }
+    }*/
 }

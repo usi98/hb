@@ -32,11 +32,9 @@ public class AdminMenuService {
         System.out.println(username);
         User user = userService.findByUsername(username);
 
-
         // 获得当前用户对应的所有角色的 id 列表
         List<Integer> rids = adminUserRoleService.listAllByUid(user.getId())
                 .stream().map(AdminUserRole::getRid).collect(Collectors.toList());
-
 
         // 查询出这些角色对应的所有菜单项
         List<Integer> menuIds = adminRoleMenuService.findAllByRid(rids)

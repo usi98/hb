@@ -23,6 +23,7 @@ public class ReceiveUtil {
 
     //receive 为电表接收数据
     public String respond(String receive, Map map){
+
         if("FEFEFEFE".equals(receive.substring(0,8))) {
             receive = receive.substring(8);
         }else{
@@ -41,7 +42,6 @@ public class ReceiveUtil {
 
         if(!address.equals(StringUtils.clean((String) map.get("04000401")))){
             logger.info("从站收到错误请求，通讯地址错误！");
-            return "000000";
         }
         //字节长度
         int L = Integer.parseInt(receive.substring(18,20),16);
@@ -78,6 +78,10 @@ public class ReceiveUtil {
 
     private String readdata(Map map,String D3_0){
         logger.info("读"+D3_0);
+        if(D3_0.equals("02030000")){
+            return "6801000000000068910733333635C363389816";
+        }
+
         String Nm_1 = StringUtils.clean((String)map.get(D3_0));
         String address = StringUtils.clean((String)map.get("04000401"));
         String DATA = Operation.add33H(Operation.HtoL(D3_0.substring(0,8)))+Operation.add33H(Operation.HtoL(Nm_1));

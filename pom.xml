@@ -76,6 +76,14 @@
             <scope>test</scope>
         </dependency>
 
+
+
+<!--        邮件推送支持-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+
 <!--         elastic search -->
 <!--        <dependency>-->
 <!--            <groupId>org.springframework.boot</groupId>-->

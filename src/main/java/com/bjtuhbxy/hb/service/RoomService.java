@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,7 +28,6 @@ public class RoomService {
     @Autowired
     RoomDAO roomDAO;
 
-
     @Autowired
     UserService userService;
 
@@ -36,6 +36,18 @@ public class RoomService {
             return roomDAO.save(room);
         }
         return null;
+    }
+
+    public Map<String, Integer> getPowerStatus(){
+
+        Integer ups = roomDAO.countByEnable(1);
+        Integer offs = roomDAO.countByEnable(0);
+
+        logger.info("count:"+String.valueOf(ups+offs));
+        Map<String, Integer> map = new HashMap<>();
+        map.put("ups", ups);
+        map.put("offs", offs);
+        return map;
     }
 
     public List<Room> findAll(){

@@ -142,22 +142,4 @@ public class CommUtil implements SerialPortEventListener {
         return str;
     }
 
-//    public static void main ( String[] args ){
-//        CommUtil commUtil = CommUtil.getInstance();
-////        commUtil.send("8101060108080302FF");
-////        commUtil.send("8101060108080301FF");
-//
-//        Scanner in =new Scanner(System.in);
-//
-//        while(true){
-//            System.out.println("输入命令：");
-//            String ch = in.next();
-//            commUtil.send(ch);
-//            ch="";
-//        }
-//
-//
-//
-////        FEFEFEFE6800000000111168110433333433D416  正向电量
-//    }
 }

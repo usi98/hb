@@ -17,6 +17,9 @@ public interface RoomDAO extends JpaRepository<Room, Integer> , JpaSpecification
 
     Room findByBuildingIdAndAndRoomId(int BuildingId, int RoomId);
 
+
+    int countByEnable(Integer enable);
+
     @Modifying
     @Transactional
     @Query("update Room as r set r.powerMax=?1 ")

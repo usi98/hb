@@ -2,6 +2,8 @@ package com.bjtuhbxy.hb.service;
 
 import com.bjtuhbxy.hb.dao.UserDAO;
 import com.bjtuhbxy.hb.entity.User;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.crypto.hash.SimpleHash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,12 @@ import java.util.List;
 public class UserService {
     @Autowired
     UserDAO userDAO;
+
+
+
+    public List<User> findAll() {
+        return userDAO.findAll();
+    }
 
     public boolean isExist(String username) {
         User user = getByName(username);

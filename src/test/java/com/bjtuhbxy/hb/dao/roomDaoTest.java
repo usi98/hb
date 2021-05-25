@@ -42,10 +42,8 @@ public class roomDaoTest {
         Room room = new Room();
         room.setSurplus(20);
         room.setPrice(60);
-        room.setStime(new Time(6,0,0));
-        room.setEtime(new Time(23,59,59));
-
-
+//        room.setStime(new Time(6,0,0));
+//        room.setEtime(new Time(23,59,59));
 
         for(int bid = 1;bid<=8;bid++){
             for (int floor = 1;floor <= 6;floor++){

@@ -1,9 +1,12 @@
 package com.bjtuhbxy.hb.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.bjtuhbxy.hb.entity.User;
 import com.bjtuhbxy.hb.result.Result;
 import com.bjtuhbxy.hb.result.ResultFactory;
 import com.bjtuhbxy.hb.service.UserService;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,4 +51,38 @@ public class RegisterController {
         return ResultFactory.buildSuccessResult(user);
     }
 
+    @CrossOrigin
+    @PostMapping("api/updatePassword")
+    @ResponseBody
+    public Result updatePassword(@RequestBody String reqJson) {
+        String message = "success";
+
+        JSONObject jsonObject = JSON.parseObject(reqJson);
+        //修改密码
+        String username = jsonObject.getString("username");
+        String oldpassword = jsonObject.getString("oldpassword");
+        String newpassword = jsonObject.getString("newpassword");
+        String newpasswordtwo = jsonObject.getString("newpasswordtwo");
+        User user = userService.getByUserName(username);
+        int times = 2;
+        // 得到 hash 后的密码
+        String encodedPassword = new SimpleHash("md5", oldpassword, user.getSalt(), times).toString();
+
+        if(!user.getPassword().equals(encodedPassword)){
+            message = "原密码填写错误";
+            return ResultFactory.buildSuccessResult(message);
+        }
+
+        if(!newpasswordtwo.equals(newpasswordtwo)){
+            message = "两次密码不一致";
+            return ResultFactory.buildSuccessResult(message);
+        }
+        String salt = new SecureRandomNumberGenerator().nextBytes().toString();
+        encodedPassword = new SimpleHash("md5", newpassword, salt, times).toString();
+        user.setSalt(salt);
+        user.setPassword(encodedPassword);
+
+        userService.save(user);
+        return ResultFactory.buildSuccessResult(message);
+    }
 }

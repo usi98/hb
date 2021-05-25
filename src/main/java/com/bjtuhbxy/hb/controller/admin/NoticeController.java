@@ -35,19 +35,13 @@ public class NoticeController {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         article.setDate(sdf.format(date));
-        logger.info("time:{}",date);
         articleService.addArticle(article);
     }
 
     @CrossOrigin
     @GetMapping("/api/article/{size}/{page}")
     public Result listArticles(@PathVariable("size") int size, @PathVariable("page") int page) {
-
-
         MyPage myPage = articleService.list(page - 1, size);
-//        logger.info("myPageJSON:{}", JSON.toJSONString(myPage));
-//        logger.info("RESULTJSON:{}", ResultFactory.buildSuccessResult(myPage).getResult());
-
         return ResultFactory.buildSuccessResult(myPage);
     }
 
